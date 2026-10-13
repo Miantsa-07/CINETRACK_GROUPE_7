@@ -101,7 +101,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <!-- Classe principale de l'application -->
-                    <mainClass>cinetrack.Main</mainClass>
+                    <mainClass>cinetrack.main.Main</mainClass>
                 </configuration>
             </plugin>
 
