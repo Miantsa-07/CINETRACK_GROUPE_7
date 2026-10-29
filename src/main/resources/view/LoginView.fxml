@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="15.0" styleClass="root-login" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinetrack.controller.LoginController">
+   <padding>
+      <Insets top="30.0" />
+   </padding>
+   <children>
+      <ImageView fitHeight="133.0" fitWidth="120.0" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtIdentifiant" maxWidth="300.0" prefWidth="300.0" promptText="Identifiant" />
+      <PasswordField fx:id="txtMotDePasse" maxWidth="300.0" prefWidth="300.0" promptText="Mot de passe" />
+      <Label fx:id="lblErreur" textFill="#cc0000" />
+      <Button fx:id="btnConnexion" mnemonicParsing="false" onAction="#onConnexion" text="Se connecter" />
+   </children>
+</VBox>

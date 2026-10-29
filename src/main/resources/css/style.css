@@ -1,0 +1,70 @@
+/* ===== Login ===== */
+.root-login {
+    -fx-background-color: white;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    -fx-background-color: white;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 1 0 0;
+}
+
+.menu-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #374151;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-graphic-text-gap: 12;
+    -fx-padding: 10 15 10 15;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.menu-btn .ikonli-font-icon {
+    -fx-icon-color: #6b7280;
+}
+.menu-btn:hover {
+    -fx-background-color: #f3f4f6;
+}
+
+.menu-btn-active {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #b91c1c;
+    -fx-font-weight: bold;
+}
+.menu-btn-active .ikonli-font-icon {
+    -fx-icon-color: #b91c1c;
+}
+
+.user-label {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 13px;
+    -fx-padding: 0 0 4 4;
+}
+
+.logout-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: #dc2626;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #dc2626;
+    -fx-alignment: CENTER_LEFT;
+    -fx-graphic-text-gap: 12;
+    -fx-padding: 10 15 10 15;
+    -fx-cursor: hand;
+}
+.logout-btn .ikonli-font-icon {
+    -fx-icon-color: #dc2626;
+}
+.logout-btn:hover {
+    -fx-background-color: #dc2626;
+    -fx-text-fill: white;
+}
+.logout-btn:hover .ikonli-font-icon {
+    -fx-icon-color: white;
+}
+
+/* ===== Zone centrale ===== */
+.content-area {
+    -fx-background-color: #f9fafb;
+}

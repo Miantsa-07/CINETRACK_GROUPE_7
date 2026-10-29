@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinetrack.controller.MainController">
+    <left>
+        <VBox prefWidth="220.0" spacing="6.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <ImageView fitWidth="140.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/logo.jpg" />
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" />
+                    </VBox.margin>
+                </ImageView>
+                <Button fx:id="btnReservations" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReservations" styleClass="menu-btn" text="Réservations">
+                    <graphic><FontIcon iconLiteral="fas-ticket-alt" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnPlanning" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlanning" styleClass="menu-btn" text="Planning">
+                    <graphic><FontIcon iconLiteral="fas-calendar-alt" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnFilms" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onFilms" styleClass="menu-btn" text="Films">
+                    <graphic><FontIcon iconLiteral="fas-film" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnSalles" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSalles" styleClass="menu-btn" text="Salles">
+                    <graphic><FontIcon iconLiteral="fas-door-open" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnClients" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClients" styleClass="menu-btn" text="Clients">
+                    <graphic><FontIcon iconLiteral="fas-users" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnStats" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onStats" styleClass="menu-btn" text="Statistiques">
+                    <graphic><FontIcon iconLiteral="fas-chart-bar" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnUtilisateurs" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUtilisateurs" styleClass="menu-btn" text="Utilisateurs">
+                    <graphic><FontIcon iconLiteral="fas-user-shield" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnLogs" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogs" styleClass="menu-btn" text="Logs">
+                    <graphic><FontIcon iconLiteral="fas-clipboard-list" iconSize="18" /></graphic>
+                </Button>
+                <Button fx:id="btnInventaire" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onInventaire" styleClass="menu-btn" text="Inventaire">
+                    <graphic><FontIcon iconLiteral="fas-laptop-code" iconSize="18" /></graphic>
+                </Button>
+                <Region VBox.vgrow="ALWAYS" />
+                <Label fx:id="lblUtilisateur" styleClass="user-label" text="Utilisateur (rôle)" />
+                <Button fx:id="btnDeconnexion" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDeconnexion" styleClass="logout-btn" text="Déconnexion">
+                    <graphic><FontIcon iconLiteral="fas-sign-out-alt" iconSize="18" /></graphic>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <StackPane fx:id="contentPane" styleClass="content-area" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
