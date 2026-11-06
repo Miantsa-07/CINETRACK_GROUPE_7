@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="133.0" fitWidth="120.0" preserveRatio="true">
          <image>
-            <Image url="@../images/logo.jpg" />
+            <Image url="@../../../resources/images/logo.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="txtIdentifiant" maxWidth="300.0" prefWidth="300.0" promptText="Identifiant" />
