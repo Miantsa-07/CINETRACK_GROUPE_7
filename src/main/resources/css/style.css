@@ -1,139 +1,51 @@
-/* ===== Login ===== */
-.root-login {
-    -fx-background-color: white;
-}
-
-/* ===== Sidebar ===== */
-.sidebar {
-    -fx-background-color: white;
-    -fx-border-color: #e5e7eb;
-    -fx-border-width: 0 1 0 0;
-}
-
-.menu-btn {
-    -fx-background-color: transparent;
-    -fx-text-fill: #374151;
+/* CineTrack – feuille de style JavaFX (à lier dans les FXML via Scene Builder > Stylesheets) */
+.root {
+    -ct-blue:      #23627C;  /* Deep Blue : texte, barre latérale, sièges occupés */
+    -ct-purple:    #744D83;  /* Deep Purple : actions principales */
+    -ct-turquoise: #23BBB7;  /* Turquoise : état actif / sélectionné */
+    -ct-lpurple:   #E3DBE6;  /* Light Purple : archivage, bordures */
+    -ct-lblue:     #D3EDEF;  /* Light Blue : actions secondaires */
+    -ct-cream:     #F0EADF;  /* Cream : fond */
+    -ct-danger:    #B3365A;  /* Rouge : annulation de billet */
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
     -fx-font-size: 14px;
-    -fx-alignment: CENTER_LEFT;
-    -fx-graphic-text-gap: 12;
-    -fx-padding: 10 15 10 15;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
+    -fx-background-color: -ct-cream;
+    -fx-text-fill: -ct-blue;
 }
-.menu-btn .ikonli-font-icon {
-    -fx-icon-color: #6b7280;
-}
-.menu-btn:hover {
-    -fx-background-color: #f3f4f6;
-}
+.label { -fx-text-fill: -ct-blue; }
+.title { -fx-font-size: 24px; -fx-font-weight: bold; }
 
-.menu-btn-active {
-    -fx-background-color: #fee2e2;
-    -fx-text-fill: #b91c1c;
-    -fx-font-weight: bold;
-}
-.menu-btn-active .ikonli-font-icon {
-    -fx-icon-color: #b91c1c;
-}
+/* Barre latérale (MainView) */
+.sidebar { -fx-background-color: -ct-blue; -fx-padding: 24 16; }
+.nav-button { -fx-background-color: transparent; -fx-text-fill: -ct-lblue; -fx-alignment: CENTER_LEFT; -fx-background-radius: 10; -fx-padding: 10 12; -fx-cursor: hand; }
+.nav-button:hover { -fx-background-color: rgba(255,255,255,0.10); }
+.nav-button:selected, .nav-button.active { -fx-background-color: -ct-purple; -fx-text-fill: white; }
 
-.user-label {
-    -fx-text-fill: #6b7280;
-    -fx-font-size: 13px;
-    -fx-padding: 0 0 4 4;
-}
+/* Boutons : un style par type d'action */
+.btn-primary   { -fx-background-color: -ct-purple; -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 9 16; -fx-font-weight: 500; -fx-cursor: hand; }
+.btn-primary:hover { -fx-background-color: -ct-blue; }
+.btn-secondary { -fx-background-color: -ct-lblue; -fx-text-fill: -ct-purple; -fx-background-radius: 10; -fx-padding: 9 16; -fx-cursor: hand; }
+.btn-secondary:hover { -fx-background-color: -ct-lpurple; }
+.btn-outline   { -fx-background-color: transparent; -fx-border-color: -ct-blue; -fx-border-radius: 10; -fx-background-radius: 10; -fx-text-fill: -ct-blue; -fx-padding: 8 16; -fx-cursor: hand; }
+.btn-archive   { -fx-background-color: -ct-lpurple; -fx-text-fill: -ct-blue; -fx-background-radius: 10; -fx-padding: 9 16; -fx-cursor: hand; }
+.btn-danger    { -fx-background-color: -ct-danger; -fx-text-fill: white; -fx-background-radius: 10; -fx-padding: 9 16; -fx-cursor: hand; }
+.btn-danger:hover { -fx-background-color: #8f2646; }
+.btn-large     { -fx-font-size: 15px; -fx-padding: 14 16; -fx-background-radius: 12; }
 
-.logout-btn {
-    -fx-background-color: transparent;
-    -fx-border-color: #dc2626;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
-    -fx-text-fill: #dc2626;
-    -fx-alignment: CENTER_LEFT;
-    -fx-graphic-text-gap: 12;
-    -fx-padding: 10 15 10 15;
-    -fx-cursor: hand;
-}
-.logout-btn .ikonli-font-icon {
-    -fx-icon-color: #dc2626;
-}
-.logout-btn:hover {
-    -fx-background-color: #dc2626;
-    -fx-text-fill: white;
-}
-.logout-btn:hover .ikonli-font-icon {
-    -fx-icon-color: white;
-}
+/* Cartes, champs, tableaux */
+.card { -fx-background-color: white; -fx-background-radius: 16; -fx-border-color: -ct-lpurple; -fx-border-radius: 16; -fx-padding: 20; }
+.text-field, .password-field, .combo-box, .date-picker, .text-area { -fx-background-color: white; -fx-border-color: #CFC4D6; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 4 8; }
+.text-field:focused, .password-field:focused, .combo-box:focused { -fx-border-color: -ct-turquoise; }
+.table-view { -fx-background-color: white; -fx-background-radius: 12; }
+.table-view .column-header-background { -fx-background-color: white; }
+.table-view .column-header .label { -fx-text-fill: #4F7A8A; -fx-font-weight: 500; }
+.table-row-cell:selected { -fx-background-color: -ct-lblue; }
+.tag { -fx-background-color: -ct-lblue; -fx-text-fill: -ct-purple; -fx-background-radius: 20; -fx-padding: 2 10; -fx-font-size: 12px; }
+.tag-archived { -fx-background-color: -ct-lpurple; -fx-text-fill: -ct-blue; }
+.error-label { -fx-text-fill: -ct-danger; }
+.total-amount { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: -ct-purple; }
 
-/* ===== Zone centrale ===== */
-.content-area {
-    -fx-background-color: #f9fafb;
-}
-
-/* ===== Pages ===== */
-.page {
-    -fx-background-color: #f9fafb;
-}
-.page-title {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #111827;
-}
-.form-panel {
-    -fx-background-color: white;
-    -fx-background-radius: 10;
-    -fx-border-color: #e5e7eb;
-    -fx-border-radius: 10;
-}
-.form-title {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-.error-label {
-    -fx-text-fill: #dc2626;
-}
-
-/* ===== Boutons ===== */
-.btn-add {
-    -fx-background-color: #16a34a;
-    -fx-text-fill: white;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-}
-.btn-add:hover {
-    -fx-background-color: #15803d;
-}
-
-.btn-edit {
-    -fx-background-color: #2563eb;
-    -fx-text-fill: white;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-}
-.btn-edit:hover {
-    -fx-background-color: #1d4ed8;
-}
-
-.btn-delete {
-    -fx-background-color: #dc2626;
-    -fx-text-fill: white;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-}
-.btn-delete:hover {
-    -fx-background-color: #b91c1c;
-}
-
-.btn-secondary {
-    -fx-background-color: #e5e7eb;
-    -fx-text-fill: #374151;
-    -fx-background-radius: 8;
-    -fx-cursor: hand;
-}
-.btn-secondary:hover {
-    -fx-background-color: #d1d5db;
-}
-
-.info-label {
-    -fx-text-fill: #6b7280;
-    -fx-font-size: 13px;
-}
+/* Plan de salle (BilletView) : un ToggleButton par siège */
+.seat { -fx-pref-width: 34; -fx-pref-height: 34; -fx-background-color: white; -fx-border-color: #CFC4D6; -fx-background-radius: 10 10 4 4; -fx-border-radius: 10 10 4 4; -fx-text-fill: -ct-blue; -fx-font-weight: bold; -fx-padding: 0; }
+.seat:selected { -fx-background-color: -ct-turquoise; -fx-border-color: -ct-turquoise; -fx-text-fill: white; }
+.seat-occupied { -fx-background-color: -ct-blue; -fx-border-color: -ct-blue; -fx-text-fill: white; -fx-opacity: 1; }

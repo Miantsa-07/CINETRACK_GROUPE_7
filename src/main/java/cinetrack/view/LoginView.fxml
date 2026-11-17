@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="15.0" styleClass="root-login" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinetrack.controller.LoginController">
-   <padding>
-      <Insets top="30.0" />
-   </padding>
-   <children>
-      <ImageView fitHeight="133.0" fitWidth="120.0" preserveRatio="true">
-         <image>
-            <Image url="@../../../resources/images/logo.jpg" />
-         </image>
-      </ImageView>
-      <TextField fx:id="txtIdentifiant" maxWidth="300.0" prefWidth="300.0" promptText="Identifiant" />
-      <PasswordField fx:id="txtMotDePasse" maxWidth="300.0" prefWidth="300.0" promptText="Mot de passe" />
-      <Label fx:id="lblErreur" textFill="#cc0000" />
-      <Button fx:id="btnConnexion" mnemonicParsing="false" onAction="#onConnexion" text="Se connecter" />
-   </children>
-</VBox>
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" styleClass="login-root" prefHeight="640" prefWidth="960" fx:controller="com.cinetrack.controller.LoginController">
+    <stylesheets>
+        <URL value="@../css/cinetrack.css"/>
+    </stylesheets>
+    <VBox alignment="CENTER_LEFT" maxWidth="380" maxHeight="-Infinity" spacing="12" styleClass="card">
+        <Label text="CineTrack" styleClass="title"/>
+        <Label text="Cinéma Le Lumière · Accès réservé au personnel" styleClass="muted" wrapText="true"/>
+        <VBox spacing="4">
+            <Label text="Identifiant" styleClass="field-label"/>
+            <TextField fx:id="txtIdentifiant"/>
+        </VBox>
+        <VBox spacing="4">
+            <Label text="Mot de passe" styleClass="field-label"/>
+            <PasswordField fx:id="txtMotDePasse" onAction="#handleConnexion"/>
+        </VBox>
+        <Label fx:id="lblErreur" styleClass="error-label" wrapText="true"/>
+        <Button fx:id="btnConnexion" text="Se connecter" defaultButton="true" maxWidth="Infinity" styleClass="btn-primary, btn-large" onAction="#handleConnexion"/>
+    </VBox>
+</StackPane>

@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" spacing="16" styleClass="page" fx:controller="com.cinetrack.controller.ReservationController">
+    <padding>
+        <Insets top="28" right="36" bottom="28" left="36"/>
+    </padding>
+    <stylesheets>
+        <URL value="@../css/cinetrack.css"/>
+    </stylesheets>
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <VBox>
+            <Label text="Billets émis" styleClass="title"/>
+            <Label fx:id="lblNbBillets" text="0 billet" styleClass="muted"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+    <VBox spacing="12" styleClass="card" VBox.vgrow="ALWAYS">
+        <HBox spacing="10" alignment="BOTTOM_LEFT">
+            <VBox spacing="4">
+                <Label text="Recherche" styleClass="field-label"/>
+                <TextField fx:id="txtRecherche" promptText="N° de billet ou nom du client" onKeyReleased="#handleFiltrer"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Statut" styleClass="field-label"/>
+                <ComboBox fx:id="cmbStatut" promptText="Tous" maxWidth="Infinity" onAction="#handleFiltrer"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Date" styleClass="field-label"/>
+                <DatePicker fx:id="dpDate" maxWidth="Infinity" onAction="#handleFiltrer"/>
+            </VBox>
+        </HBox>
+        <TableView fx:id="tblBillets" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colBillet" prefWidth="90" text="Billet"/>
+                <TableColumn fx:id="colClient" prefWidth="150" text="Client"/>
+                <TableColumn fx:id="colFilm" prefWidth="160" text="Film"/>
+                <TableColumn fx:id="colSeance" prefWidth="130" text="Séance"/>
+                <TableColumn fx:id="colSiege" prefWidth="60" text="Siège"/>
+                <TableColumn fx:id="colCategorie" prefWidth="110" text="Catégorie"/>
+                <TableColumn fx:id="colMontant" prefWidth="90" text="Montant"/>
+                <TableColumn fx:id="colStatut" prefWidth="80" text="Statut"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Button fx:id="btnAnnulerBillet" text="Annuler le billet" styleClass="btn-danger" onAction="#handleAnnulerBillet"/>
+            <Button fx:id="btnReimprimer" text="Réimprimer" styleClass="btn-secondary" onAction="#handleReimprimer"/>
+        </HBox>
+    </VBox>
+</VBox>

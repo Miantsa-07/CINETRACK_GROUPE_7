@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" spacing="16" styleClass="page" fx:controller="com.cinetrack.controller.StatsController">
+    <padding>
+        <Insets top="28" right="36" bottom="28" left="36"/>
+    </padding>
+    <stylesheets>
+        <URL value="@../css/cinetrack.css"/>
+    </stylesheets>
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <VBox>
+            <Label text="Tableau de bord" styleClass="title"/>
+            <Label fx:id="lblPeriode" text="Statistiques d’exploitation" styleClass="muted"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+    <HBox spacing="10" alignment="BOTTOM_LEFT">
+        <VBox spacing="4">
+            <Label text="Période" styleClass="field-label"/>
+            <ComboBox fx:id="cmbPeriode" promptText="Période" maxWidth="Infinity" onAction="#handlePeriode"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnExportCsv" text="Exporter en CSV" styleClass="btn-secondary" onAction="#handleExportCsv"/>
+        <Button fx:id="btnExportPdf" text="Exporter en PDF" styleClass="btn-secondary" onAction="#handleExportPdf"/>
+    </HBox>
+    <HBox spacing="16">
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+            <Label text="Chiffre d’affaires" styleClass="muted"/>
+            <Label fx:id="lblCA" text="0 Rs" styleClass="kpi-value"/>
+        </VBox>
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+            <Label text="Billets vendus" styleClass="muted"/>
+            <Label fx:id="lblBillets" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+            <Label text="Taux d’occupation" styleClass="muted"/>
+            <Label fx:id="lblTaux" text="0 %" styleClass="kpi-value"/>
+        </VBox>
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+            <Label text="Séances programmées" styleClass="muted"/>
+            <Label fx:id="lblSeances" text="0" styleClass="kpi-value"/>
+        </VBox>
+    </HBox>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <Label text="Films les plus réservés" styleClass="section-title"/>
+            <BarChart fx:id="chartFilms" legendVisible="false" VBox.vgrow="ALWAYS">
+                <xAxis>
+                    <CategoryAxis/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis/>
+                </yAxis>
+            </BarChart>
+        </VBox>
+        <VBox spacing="12" styleClass="card" prefWidth="360">
+            <Label text="Occupation par salle" styleClass="section-title"/>
+            <TableView fx:id="tblOccupationSalles" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colSalle" prefWidth="120" text="Salle"/>
+                    <TableColumn fx:id="colTauxSalle" prefWidth="80" text="Taux"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+    </HBox>
+    <VBox spacing="12" styleClass="card" prefHeight="220">
+        <Label text="Occupation par séance" styleClass="section-title"/>
+        <TableView fx:id="tblOccupationSeances" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colSeance" prefWidth="140" text="Séance"/>
+                <TableColumn fx:id="colFilmStat" prefWidth="180" text="Film"/>
+                <TableColumn fx:id="colSalleStat" prefWidth="90" text="Salle"/>
+                <TableColumn fx:id="colVendus" prefWidth="80" text="Vendus"/>
+                <TableColumn fx:id="colTauxSeance" prefWidth="80" text="Taux"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+</VBox>

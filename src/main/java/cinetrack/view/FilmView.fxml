@@ -1,65 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox spacing="15.0" styleClass="page" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinetrack.controller.FilmController">
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" spacing="16" styleClass="page" fx:controller="com.cinetrack.controller.FilmController">
     <padding>
-        <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+        <Insets top="28" right="36" bottom="28" left="36"/>
     </padding>
-    <children>
-        <Label styleClass="page-title" text="Catalogue des films" />
-        <HBox spacing="10.0">
-            <children>
-                <TextField fx:id="txtRecherche" onKeyReleased="#onRechercher" prefHeight="25.0" prefWidth="237.0" promptText="Rechercher par titre" />
-                <ComboBox fx:id="cbGenreFiltre" onAction="#onRechercher" prefHeight="25.0" prefWidth="120.0" promptText="Genre" />
-            </children>
-        </HBox>
-        <HBox spacing="20.0" VBox.vgrow="ALWAYS">
-            <children>
-                <TableView fx:id="tblFilms" HBox.hgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="colTitre" prefWidth="240.0" text="Titre" />
-                        <TableColumn fx:id="colGenre" prefWidth="130.0" text="Genre" />
-                        <TableColumn fx:id="colDuree" prefWidth="100.0" text="Durée (min)" />
-                        <TableColumn fx:id="colNote" prefWidth="90.0" text="Note" />
-                    </columns>
-                    <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                    </columnResizePolicy>
-                </TableView>
-                <VBox prefWidth="300.0" spacing="10.0" styleClass="form-panel">
-                    <padding>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                    </padding>
-                    <children>
-                        <Label styleClass="form-title" text="Fiche film" textAlignment="CENTER" />
-                        <Label text="Titre" />
-                        <TextField fx:id="txtTitre" />
-                        <ComboBox fx:id="cbGenre" maxWidth="1.7976931348623157E308" promptText="Genre" />
-                        <Label text="Durée (minutes)" />
-                        <TextField fx:id="txtDuree" />
-                        <Label text="Synopsis" />
-                        <TextArea fx:id="txtSynopsis" prefRowCount="5" wrapText="true" />
-                        <Label fx:id="lblMessage" styleClass="error-label" wrapText="true" />
-                        <HBox spacing="8.0">
-                            <children>
-                                <Button fx:id="btnAjouter" onAction="#onAjouter" prefHeight="25.0" prefWidth="89.0" styleClass="btn-add" text="Ajouter" />
-                                <Button fx:id="btnModifier" onAction="#onModifier" prefHeight="25.0" prefWidth="90.0" styleClass="btn-edit" text="Modifier" />
-                                <Button fx:id="btnSupprimer" onAction="#onSupprimer" prefHeight="25.0" prefWidth="90.0" styleClass="btn-delete" text="Supprimer" />
-                            </children>
-                        </HBox>
-                    </children>
+    <stylesheets>
+        <URL value="@../css/cinetrack.css"/>
+    </stylesheets>
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <VBox>
+            <Label text="Catalogue de films" styleClass="title"/>
+            <Label fx:id="lblNbFilms" text="0 film" styleClass="muted"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnNouveau" text="Ajouter un film" styleClass="btn-primary" onAction="#handleNouveau"/>
+    </HBox>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <HBox spacing="10" alignment="BOTTOM_LEFT">
+                <VBox spacing="4">
+                    <Label text="Recherche" styleClass="field-label"/>
+                    <TextField fx:id="txtRecherche" promptText="Titre ou genre" onKeyReleased="#handleFiltrer"/>
                 </VBox>
-            </children>
-        </HBox>
-    </children>
+                <VBox spacing="4">
+                    <Label text="Genre" styleClass="field-label"/>
+                    <ComboBox fx:id="cmbGenre" promptText="Tous" maxWidth="Infinity" onAction="#handleFiltrer"/>
+                </VBox>
+                <CheckBox fx:id="chkArchives" text="Afficher les archivés" onAction="#handleFiltrer"/>
+            </HBox>
+            <TableView fx:id="tblFilms" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colTitre" prefWidth="200" text="Titre"/>
+                    <TableColumn fx:id="colGenre" prefWidth="110" text="Genre"/>
+                    <TableColumn fx:id="colDuree" prefWidth="70" text="Durée"/>
+                    <TableColumn fx:id="colNote" prefWidth="110" text="Note moyenne"/>
+                    <TableColumn fx:id="colStatut" prefWidth="90" text="Statut"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+            </TableView>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button fx:id="btnModifier" text="Modifier" styleClass="btn-secondary" onAction="#handleModifier"/>
+                <Button fx:id="btnAvis" text="Avis" styleClass="btn-secondary" onAction="#handleAvis"/>
+                <Button fx:id="btnArchiver" text="Archiver / Restaurer" styleClass="btn-archive" onAction="#handleArchiver"/>
+            </HBox>
+        </VBox>
+        <VBox spacing="12" styleClass="card" prefWidth="320" minWidth="320">
+            <Label text="Fiche film" styleClass="section-title"/>
+            <VBox spacing="4">
+                <Label text="Titre" styleClass="field-label"/>
+                <TextField fx:id="txtTitre" promptText=""/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Durée (minutes)" styleClass="field-label"/>
+                <TextField fx:id="txtDuree" promptText=""/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Genre" styleClass="field-label"/>
+                <TextField fx:id="txtGenre" promptText=""/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Synopsis" styleClass="field-label"/>
+                <TextArea fx:id="txtSynopsis" prefRowCount="3" wrapText="true"/>
+            </VBox>
+            <Label fx:id="lblErreur" text="" styleClass="error-label"/>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button fx:id="btnEnregistrer" text="Enregistrer" styleClass="btn-primary" onAction="#handleEnregistrer"/>
+                <Button fx:id="btnAnnuler" text="Annuler" styleClass="btn-outline" onAction="#handleAnnuler"/>
+            </HBox>
+        </VBox>
+    </HBox>
 </VBox>

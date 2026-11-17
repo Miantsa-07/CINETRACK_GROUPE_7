@@ -1,14 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" spacing="16" styleClass="page" fx:controller="com.cinetrack.controller.BilletController">
+    <padding>
+        <Insets top="28" right="36" bottom="28" left="36"/>
+    </padding>
+    <stylesheets>
+        <URL value="@../css/cinetrack.css"/>
+    </stylesheets>
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <VBox>
+            <Label text="Billetterie" styleClass="title"/>
+            <Label fx:id="lblSousTitre" text="Un billet = un siège" styleClass="muted"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <Label text="Plan de salle" styleClass="section-title"/>
+            <Label text="ÉCRAN" maxWidth="Infinity" alignment="CENTER" styleClass="screen-label"/>
+            <ScrollPane fitToWidth="true" styleClass="seat-scroll" VBox.vgrow="ALWAYS">
+                <content>
+                    <GridPane fx:id="gridSieges" hgap="6" vgap="6" alignment="CENTER">
+                        <padding>
+                            <Insets top="8" right="8" bottom="8" left="8"/>
+                        </padding>
+                    </GridPane>
+                </content>
+            </ScrollPane>
+            <HBox spacing="24" alignment="CENTER">
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label styleClass="seat,seat-free" prefWidth="22" prefHeight="22" minWidth="22"/>
+                    <Label text="Libre"/>
+                </HBox>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label styleClass="seat,seat-selected" prefWidth="22" prefHeight="22" minWidth="22"/>
+                    <Label text="Sélectionné"/>
+                </HBox>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label styleClass="seat,seat-occupied" prefWidth="22" prefHeight="22" minWidth="22"/>
+                    <Label text="Occupé"/>
+                </HBox>
+            </HBox>
+        </VBox>
+        <VBox spacing="12" styleClass="card" prefWidth="320" minWidth="320">
+            <VBox spacing="4">
+                <Label text="Choix du film et séance" styleClass="field-label"/>
+                <ComboBox fx:id="cmbSeance" promptText="Choisir une séance" maxWidth="Infinity" onAction="#handleSeance"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Catégorie du tarif" styleClass="field-label"/>
+                <ComboBox fx:id="cmbTarif" promptText="Choisir un tarif" maxWidth="Infinity" onAction="#handleTarif"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Client" styleClass="field-label"/>
+                <ComboBox fx:id="cmbClient" promptText="Choisir un client" maxWidth="Infinity"/>
+            </VBox>
+            <Button fx:id="btnNouveauClient" text="Nouveau client" styleClass="btn-secondary" onAction="#handleNouveauClient"/>
+            <VBox spacing="6" styleClass="recap">
+                <HBox>
+                    <Label text="Siège(s) choisi(s) :" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Label fx:id="lblSieges" text="—" styleClass="bold"/>
+                </HBox>
+                <HBox>
+                    <Label text="Nombre de billets :" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    <Label fx:id="lblNbBillets" text="0" styleClass="bold"/>
+                </HBox>
+            </VBox>
+            <HBox alignment="CENTER_LEFT">
+                <Label text="TOTAL À ENCAISSER :" styleClass="muted" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                <Label fx:id="lblTotal" text="0 Rs" styleClass="total-amount"/>
+            </HBox>
+            <Label fx:id="lblErreur" text="" styleClass="error-label"/>
+            <Button fx:id="btnEncaisser" text="Encaisser et imprimer les billets" styleClass="btn-primary, btn-large" onAction="#handleEncaisser" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+</VBox>

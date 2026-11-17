@@ -1,62 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cinetrack.controller.MainController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" styleClass="page" prefHeight="760" prefWidth="1280" fx:controller="com.cinetrack.controller.MainController">
+    <stylesheets>
+        <URL value="@../css/cinetrack.css"/>
+    </stylesheets>
     <left>
-        <VBox prefWidth="220.0" spacing="6.0" styleClass="sidebar" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-            </padding>
-            <children>
-                <ImageView fitWidth="140.0" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../resources/images/logo.jpg" />
-                    </image>
-                    <VBox.margin>
-                        <Insets bottom="15.0" left="20.0" />
-                    </VBox.margin>
-                </ImageView>
-                <Button fx:id="btnReservations" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onReservations" styleClass="menu-btn" text="Réservations">
-                    <graphic><FontIcon iconLiteral="fas-ticket-alt" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnPlanning" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlanning" styleClass="menu-btn" text="Planning">
-                    <graphic><FontIcon iconLiteral="fas-calendar-alt" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnFilms" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onFilms" styleClass="menu-btn" text="Films">
-                    <graphic><FontIcon iconLiteral="fas-film" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnSalles" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onSalles" styleClass="menu-btn" text="Salles">
-                    <graphic><FontIcon iconLiteral="fas-door-open" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnClients" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClients" styleClass="menu-btn" text="Clients">
-                    <graphic><FontIcon iconLiteral="fas-users" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnStats" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onStats" styleClass="menu-btn" text="Statistiques">
-                    <graphic><FontIcon iconLiteral="fas-chart-bar" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnUtilisateurs" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onUtilisateurs" styleClass="menu-btn" text="Utilisateurs">
-                    <graphic><FontIcon iconLiteral="fas-user-shield" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnLogs" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogs" styleClass="menu-btn" text="Logs">
-                    <graphic><FontIcon iconLiteral="fas-clipboard-list" iconSize="18" /></graphic>
-                </Button>
-                <Button fx:id="btnInventaire" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onInventaire" styleClass="menu-btn" text="Inventaire">
-                    <graphic><FontIcon iconLiteral="fas-laptop-code" iconSize="18" /></graphic>
-                </Button>
-                <Region VBox.vgrow="ALWAYS" />
-                <Label fx:id="lblUtilisateur" styleClass="user-label" text="Utilisateur (rôle)" />
-                <Button fx:id="btnDeconnexion" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDeconnexion" styleClass="logout-btn" text="Déconnexion">
-                    <graphic><FontIcon iconLiteral="fas-sign-out-alt" iconSize="18" /></graphic>
-                </Button>
-            </children>
+        <VBox spacing="24" styleClass="sidebar" prefWidth="232" minWidth="232">
+            <Label text="CineTrack" styleClass="logo"/>
+            <VBox spacing="4" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnStats" text="Tableau de bord" maxWidth="Infinity" styleClass="nav-button" onAction="#showStats"/>
+                <Button fx:id="btnFilms" text="Films" maxWidth="Infinity" styleClass="nav-button" onAction="#showFilms"/>
+                <Button fx:id="btnPlanning" text="Programmation" maxWidth="Infinity" styleClass="nav-button" onAction="#showPlanning"/>
+                <Button fx:id="btnBillet" text="Billetterie" maxWidth="Infinity" styleClass="nav-button" onAction="#showBillet"/>
+                <Button fx:id="btnReservations" text="Billets émis" maxWidth="Infinity" styleClass="nav-button" onAction="#showReservations"/>
+                <Button fx:id="btnClients" text="Clients" maxWidth="Infinity" styleClass="nav-button" onAction="#showClients"/>
+                <Button fx:id="btnSalles" text="Salles et tarifs" maxWidth="Infinity" styleClass="nav-button" onAction="#showSalles"/>
+                <Button fx:id="btnAvis" text="Avis" maxWidth="Infinity" styleClass="nav-button" onAction="#showAvis"/>
+                <Button fx:id="btnInventaire" text="Inventaire logiciel" maxWidth="Infinity" styleClass="nav-button" onAction="#showInventaire"/>
+                <Button fx:id="btnUtilisateurs" text="Utilisateurs" maxWidth="Infinity" styleClass="nav-button" onAction="#showUtilisateurs"/>
+                <Button fx:id="btnLogs" text="Journal" maxWidth="Infinity" styleClass="nav-button" onAction="#showLogs"/>
+            </VBox>
+            <VBox spacing="4" styleClass="user-box">
+                <Label fx:id="lblUtilisateur" text="Utilisateur" styleClass="user-name"/>
+                <Label fx:id="lblRole" text="Rôle" styleClass="user-role"/>
+                <Button fx:id="btnDeconnexion" text="Se déconnecter" maxWidth="Infinity" styleClass="btn-outline-light" onAction="#handleDeconnexion"/>
+            </VBox>
         </VBox>
     </left>
     <center>
-        <StackPane fx:id="contentPane" styleClass="content-area" BorderPane.alignment="CENTER" />
+        <StackPane fx:id="contentPane"/>
     </center>
 </BorderPane>

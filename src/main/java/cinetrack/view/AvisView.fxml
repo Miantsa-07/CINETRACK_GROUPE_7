@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" spacing="16" styleClass="page" fx:controller="com.cinetrack.controller.AvisController">
+    <padding>
+        <Insets top="28" right="36" bottom="28" left="36"/>
+    </padding>
+    <stylesheets>
+        <URL value="@../css/cinetrack.css"/>
+    </stylesheets>
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <VBox>
+            <Label text="Avis et notes" styleClass="title"/>
+            <Label fx:id="lblMoyenne" text="Note moyenne : —" styleClass="muted"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="12" styleClass="card" HBox.hgrow="ALWAYS">
+            <VBox spacing="4">
+                <Label text="Film" styleClass="field-label"/>
+                <ComboBox fx:id="cmbFilm" promptText="Choisir un film" maxWidth="Infinity" onAction="#handleFilm"/>
+            </VBox>
+            <TableView fx:id="tblAvis" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colNote" prefWidth="70" text="Note"/>
+                    <TableColumn fx:id="colCommentaire" prefWidth="300" text="Commentaire"/>
+                    <TableColumn fx:id="colDate" prefWidth="100" text="Date"/>
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+        <VBox spacing="12" styleClass="card" prefWidth="320" minWidth="320">
+            <Label text="Laisser un avis" styleClass="section-title"/>
+            <VBox spacing="4">
+                <Label text="Note (1 à 5)" styleClass="field-label"/>
+                <ComboBox fx:id="cmbNote" promptText="Note" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Commentaire" styleClass="field-label"/>
+                <TextArea fx:id="txtCommentaire" prefRowCount="3" wrapText="true"/>
+            </VBox>
+            <Label fx:id="lblErreur" text="" styleClass="error-label"/>
+            <Button fx:id="btnAjouterAvis" text="Ajouter l’avis" styleClass="btn-primary" onAction="#handleAjouterAvis"/>
+        </VBox>
+    </HBox>
+</VBox>
