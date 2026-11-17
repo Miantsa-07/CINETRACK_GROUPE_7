@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" styleClass="page" prefHeight="760" prefWidth="1280" fx:controller="com.cinetrack.controller.MainController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" styleClass="page" prefHeight="760" prefWidth="1280" fx:controller="cinetrack.controller.MainController">
     <stylesheets>
-        <URL value="@../css/cinetrack.css"/>
+        <URL value="@/css/style.css"/>
     </stylesheets>
     <left>
         <VBox spacing="24" styleClass="sidebar" prefWidth="232" minWidth="232">
