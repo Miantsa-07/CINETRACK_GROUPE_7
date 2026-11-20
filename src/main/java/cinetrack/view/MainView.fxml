@@ -22,7 +22,6 @@
                 <Button fx:id="btnClients" text="Clients" maxWidth="Infinity" styleClass="nav-button" onAction="#showClients"/>
                 <Button fx:id="btnSalles" text="Salles et tarifs" maxWidth="Infinity" styleClass="nav-button" onAction="#showSalles"/>
                 <Button fx:id="btnAvis" text="Avis" maxWidth="Infinity" styleClass="nav-button" onAction="#showAvis"/>
-                <Button fx:id="btnInventaire" text="Inventaire logiciel" maxWidth="Infinity" styleClass="nav-button" onAction="#showInventaire"/>
                 <Button fx:id="btnUtilisateurs" text="Utilisateurs" maxWidth="Infinity" styleClass="nav-button" onAction="#showUtilisateurs"/>
                 <Button fx:id="btnLogs" text="Journal" maxWidth="Infinity" styleClass="nav-button" onAction="#showLogs"/>
             </VBox>
