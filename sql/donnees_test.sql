@@ -1,5 +1,5 @@
 -- =====================================================================
--- DONNÉES DE TEST POUR CINETRACK
+-- DONNÉES DE TEST POUR CINETRACK (version mise à jour)
 -- À exécuter après le script de création des tables
 -- =====================================================================
 
@@ -7,45 +7,68 @@
 -- 1. Utilisateurs (personnel du cinéma)
 -- ----------------------------------------------------------------
 -- Identifiants de connexion pour tester :
---   admin           / admin123
---   caissier1       / caisse1
---   caissier2       / caisse2
---   projectionniste / proj2025
+--   admin      / admin123    (peut ajouter/supprimer des utilisateurs)
+--   directeur  / dir2025     (peut voir les ventes)
+--   caissier1  / caisse1
+--   caissier2  / caisse2
 -- ⚠️ En base, SEULS les hashs BCrypt sont stockés.
 -- ----------------------------------------------------------------
-INSERT INTO Utilisateur (identifiant, motDePasse, role) VALUES
-                                                            ('admin',           '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Administrateur'),
-                                                            ('caissier1',       '$2a$10$8K1p/a0dL1LXMIgoEDFrwOfgqwAGXkFqLBnrFqKjFqJtFqLBnrFqK', 'Caissier'),
-                                                            ('caissier2',       '$2a$10$9L2q/b1eM2MYNJhpFEgswPghrxBHYlGraMcsGrLkGrKuGrMcsaMcs', 'Caissier'),
-                                                            ('projectionniste', '$2a$10$0M3r/c2fN3NZOKiqGFhtxQhisyCIZmHsbNdGsHmLHsLvHsNdGsHmL', 'Projectionniste');
+INSERT INTO Utilisateur (identifiant, motDePasse, role, nom, prenom, contact, mail) VALUES
+                                                                                        ('admin',      '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Administrateur', 'Admin',      'Système', '0600000001', 'admin@cinetrack.fr'),
+                                                                                        ('directeur',  '$2a$10$7J0p/z9cK0KWlgHnDCEqvNeQfpvzFWjEpKAmoEpJiEpIuEpKAmoEp', 'Directeur',      'Durand',     'Marc',    '0600000002', 'directeur@cinetrack.fr'),
+                                                                                        ('caissier1',  '$2a$10$8K1p/a0dL1LXMIgoEDFrwOfgqwAGXkFqLBnrFqKjFqJtFqLBnrFqK', 'Caissier',       'Martin',     'Julie',   '0600000003', 'caissier1@cinetrack.fr'),
+                                                                                        ('caissier2',  '$2a$10$9L2q/b1eM2MYNJhpFEgswPghrxBHYlGraMcsGrLkGrKuGrMcsaMcs', 'Caissier',       'Bernard',    'Paul',    '0600000004', 'caissier2@cinetrack.fr');
 
 -- ----------------------------------------------------------------
 -- 2. Films (variété de genres et durées pour tester les filtres)
 -- ----------------------------------------------------------------
-INSERT INTO Film (titre, duree, genre, synopsis, noteMoyenne) VALUES
-                                                                  ('Inception',                            148, 'Science-Fiction',    'Un voleur d''idées infiltre les rêves pour y dérober des secrets.',           4.50),
-                                                                  ('Le Fabuleux Destin d''Amélie Poulain', 122, 'Comédie',            'Une jeune serveuse parisienne décide de changer la vie des gens.',           4.20),
-                                                                  ('Interstellar',                         169, 'Science-Fiction',    'Un groupe d''explorateurs voyage à travers un trou de ver.',                 4.70),
-                                                                  ('Intouchables',                         112, 'Comédie dramatique', 'L''amitié improbable entre un aristocrate tétraplégique et son aide-soignant.', 4.80),
-                                                                  ('Parasite',                             132, 'Thriller',           'Une famille pauvre s''infiltre chez une famille riche.',                     4.60),
-                                                                  ('Oppenheimer',                          180, 'Biopic',             'La vie du physicien J. Robert Oppenheimer.',                                 4.30),
-                                                                  ('Dune: Deuxième Partie',                166, 'Science-Fiction',    'Paul Atréides s''allie aux Fremen pour se venger.',                          4.40),
-                                                                  ('Top Gun: Maverick',                    131, 'Action',             'Maverick forme une nouvelle génération de pilotes.',                         4.10),
-                                                                  ('Everything Everywhere All at Once',    139, 'Science-Fiction',    'Une femme découvre qu''elle doit sauver le multivers.',                      4.20),
-                                                                  ('Le Discours d''un Roi',                118, 'Drame historique',   'Le roi George VI surmonte son bégaiement.',                                  3.90);
+INSERT INTO Film (titre, duree, genre, synopsis, is_deleted, date_creation) VALUES
+                                                                                ('Inception',                            148, 'Science-Fiction',    'Un voleur d''idées infiltre les rêves pour y dérober des secrets.',             FALSE, '2025-01-01 09:00:00'),
+                                                                                ('Le Fabuleux Destin d''Amélie Poulain', 122, 'Comédie',            'Une jeune serveuse parisienne décide de changer la vie des gens.',             FALSE, '2025-01-01 09:05:00'),
+                                                                                ('Interstellar',                         169, 'Science-Fiction',    'Un groupe d''explorateurs voyage à travers un trou de ver.',                   FALSE, '2025-01-01 09:10:00'),
+                                                                                ('Intouchables',                         112, 'Comédie dramatique', 'L''amitié improbable entre un aristocrate tétraplégique et son aide-soignant.', FALSE, '2025-01-01 09:15:00'),
+                                                                                ('Parasite',                             132, 'Thriller',           'Une famille pauvre s''infiltre chez une famille riche.',                       FALSE, '2025-01-01 09:20:00'),
+                                                                                ('Oppenheimer',                          180, 'Biopic',             'La vie du physicien J. Robert Oppenheimer.',                                   FALSE, '2025-01-01 09:25:00'),
+                                                                                ('Dune: Deuxième Partie',                166, 'Science-Fiction',    'Paul Atréides s''allie aux Fremen pour se venger.',                            FALSE, '2025-01-01 09:30:00'),
+                                                                                ('Top Gun: Maverick',                    131, 'Action',             'Maverick forme une nouvelle génération de pilotes.',                           FALSE, '2025-01-01 09:35:00'),
+                                                                                ('Everything Everywhere All at Once',    139, 'Science-Fiction',    'Une femme découvre qu''elle doit sauver le multivers.',                        FALSE, '2025-01-01 09:40:00'),
+                                                                                ('Le Discours d''un Roi',                118, 'Drame historique',   'Le roi George VI surmonte son bégaiement.',                                    FALSE, '2025-01-01 09:45:00');
+
+-- Film "supprimé" (pour tester is_deleted = TRUE)
+INSERT INTO Film (titre, duree, genre, synopsis, is_deleted, date_creation, date_suppression) VALUES
+    ('Film Retiré de l''Affiche', 95, 'Drame', 'Film ancien retiré du catalogue.', TRUE, '2024-06-01 09:00:00', '2025-01-01 10:00:00');
 
 -- ----------------------------------------------------------------
--- 3. Salles (tailles variées)
+-- 3. Salles (3 salles, capacité max 80)
 -- ----------------------------------------------------------------
-INSERT INTO Salle (nom, capacite) VALUES
-                                      ('Salle 1 - Grande',    250),
-                                      ('Salle 2 - Moyenne',   150),
-                                      ('Salle 3 - Petite',     80),
-                                      ('Salle 4 - IMAX',      300),
-                                      ('Salle 5 - VIP',        40);
+INSERT INTO Salle (nom, capacite, nombre_colonne, nombre_ligne) VALUES
+                                                                    ('Petite',  40,  8,  5),   -- 8 colonnes × 5 lignes = 40 places
+                                                                    ('Moyenne', 60, 10,  6),   -- 10 colonnes × 6 lignes = 60 places
+                                                                    ('Grande',  80, 10,  8);   -- 10 colonnes × 8 lignes = 80 places
 
 -- ----------------------------------------------------------------
--- 4. Tarifs
+-- 4. Places (générées pour chaque salle)
+-- ----------------------------------------------------------------
+-- Petite (8 colonnes × 5 lignes = 40 places, codes A1..H5)
+INSERT INTO Place (codePlace, idSalle, disponibilite)
+SELECT chr(64 + ligne) || colonne, 1, TRUE
+FROM generate_series(1, 8) AS colonne,
+     generate_series(1, 5) AS ligne;
+
+-- Moyenne (10 colonnes × 6 lignes = 60 places, codes A1..J6)
+INSERT INTO Place (codePlace, idSalle, disponibilite)
+SELECT chr(64 + ligne) || colonne, 2, TRUE
+FROM generate_series(1, 10) AS colonne,
+     generate_series(1, 6) AS ligne;
+
+-- Grande (10 colonnes × 8 lignes = 80 places, codes A1..J8)
+INSERT INTO Place (codePlace, idSalle, disponibilite)
+SELECT chr(64 + ligne) || colonne, 3, TRUE
+FROM generate_series(1, 10) AS colonne,
+     generate_series(1, 8) AS ligne;
+
+-- ----------------------------------------------------------------
+-- 5. Tarifs
 -- ----------------------------------------------------------------
 INSERT INTO Tarif (libelle, prixUnitaire) VALUES
                                               ('Plein tarif',              12.50),
@@ -57,59 +80,75 @@ INSERT INTO Tarif (libelle, prixUnitaire) VALUES
                                               ('Tarif groupe (10+)',        8.50);
 
 -- ----------------------------------------------------------------
--- 5. Clients
+-- 6. Clients
 -- ----------------------------------------------------------------
-INSERT INTO Client (nom, prenom, coordonnees) VALUES
-                                                  ('Dupont',   'Marie',  'marie.dupont@email.com'),
-                                                  ('Martin',   'Pierre', '06 12 34 56 78'),
-                                                  ('Bernard',  'Sophie', 'sophie.bernard@email.com'),
-                                                  ('Petit',    'Lucas',  '07 98 76 54 32'),
-                                                  ('Durand',   'Emma',   'emma.durand@email.com'),
-                                                  ('Leroy',    'Thomas', '06 11 22 33 44'),
-                                                  ('Moreau',   'Chloé',  'chloe.moreau@email.com'),
-                                                  ('Simon',    'Hugo',   '07 55 66 77 88'),
-                                                  ('Laurent',  'Léa',    'lea.laurent@email.com'),
-                                                  ('Lefebvre', 'Nathan', NULL);  -- Coordonnées manquantes : cas limite
+INSERT INTO Client (nom, prenom, telephone, email, is_deleted) VALUES
+                                                                   ('Dupont',   'Marie',  '0612345678', 'marie.dupont@email.com',   FALSE),
+                                                                   ('Martin',   'Pierre', '0612345679', NULL,                       FALSE),
+                                                                   ('Bernard',  'Sophie', NULL,         'sophie.bernard@email.com', FALSE),
+                                                                   ('Petit',    'Lucas',  '0798765432', NULL,                       FALSE),
+                                                                   ('Durand',   'Emma',   NULL,         'emma.durand@email.com',    FALSE),
+                                                                   ('Leroy',    'Thomas', '0611223344', NULL,                       FALSE),
+                                                                   ('Moreau',   'Chloé',  NULL,         'chloe.moreau@email.com',   FALSE),
+                                                                   ('Simon',    'Hugo',   '0755667788', NULL,                       FALSE),
+                                                                   ('Laurent',  'Léa',    NULL,         'lea.laurent@email.com',    FALSE),
+                                                                   ('Lefebvre', 'Nathan', NULL,         NULL,                       FALSE);  -- Coordonnées manquantes : cas limite
+
+-- Client "ancien" (pour tester is_deleted = TRUE)
+INSERT INTO Client (nom, prenom, telephone, email, is_deleted, date_suppression) VALUES
+    ('Ancien', 'Client', '0600000000', 'ancien.client@email.com', TRUE, '2025-06-01 12:00:00');
 
 -- ----------------------------------------------------------------
--- 6. Séances (passées et futures, différentes salles/films)
+-- 7. Séances (passées et futures, différentes salles/films)
 -- ----------------------------------------------------------------
-INSERT INTO Seance (dateHeureDebut, dateHeureFin, placesRestantes, idFilm, idSalle) VALUES
+INSERT INTO Seance (dateHeureDebut, dateHeureFin, placesRestantes, idFilm, idSalle, is_deleted) VALUES
 -- Séances passées (pour tester l'historique)
-('2025-01-10 14:00:00', '2025-01-10 16:28:00',   0,  1, 1),  -- Inception, Salle 1 (complète)
-('2025-01-10 20:00:00', '2025-01-10 22:02:00', 120,  2, 2),  -- Amélie, Salle 2
-('2025-01-11 18:00:00', '2025-01-11 20:49:00',  50,  3, 4),  -- Interstellar, IMAX
-('2025-01-12 16:00:00', '2025-01-12 17:52:00',  80,  4, 3),  -- Intouchables, Salle 3
+('2025-01-10 14:00:00', '2025-01-10 16:28:00',   0,  1, 1, FALSE),  -- Inception, Petite (complète)
+('2025-01-10 20:00:00', '2025-01-10 22:02:00',  60,  2, 2, FALSE),  -- Amélie, Moyenne
+('2025-01-11 18:00:00', '2025-01-11 20:49:00',  40,  3, 3, FALSE),  -- Interstellar, Grande
+('2025-01-12 16:00:00', '2025-01-12 17:52:00',  40,  4, 1, FALSE),  -- Intouchables, Petite
 -- Séances futures (pour tester les réservations)
-('2025-12-15 14:00:00', '2025-12-15 16:12:00', 250,  5, 1),  -- Parasite, Salle 1
-('2025-12-15 18:00:00', '2025-12-15 21:00:00', 300,  6, 4),  -- Oppenheimer, IMAX
-('2025-12-16 20:30:00', '2025-12-16 23:16:00', 150,  7, 2),  -- Dune 2, Salle 2
-('2025-12-16 16:00:00', '2025-12-16 18:11:00',  80,  8, 3),  -- Top Gun, Salle 3
-('2025-12-17 19:00:00', '2025-12-17 21:19:00',  40,  9, 5),  -- Everything..., Salle 5 VIP
-('2025-12-17 21:00:00', '2025-12-17 22:58:00', 250, 10, 1);  -- Le Discours, Salle 1
+('2025-12-15 14:00:00', '2025-12-15 16:12:00',  40,  5, 1, FALSE),  -- Parasite, Petite
+('2025-12-15 18:00:00', '2025-12-15 21:00:00',  80,  6, 3, FALSE),  -- Oppenheimer, Grande
+('2025-12-16 20:30:00', '2025-12-16 23:16:00',  60,  7, 2, FALSE),  -- Dune 2, Moyenne
+('2025-12-16 16:00:00', '2025-12-16 18:11:00',  40,  8, 1, FALSE),  -- Top Gun, Petite
+('2025-12-17 19:00:00', '2025-12-17 21:19:00',  40,  9, 1, FALSE),  -- Everything..., Petite
+('2025-12-17 21:00:00', '2025-12-17 22:58:00',  80, 10, 3, FALSE);  -- Le Discours, Grande
+
+-- Séance "supprimée" (pour tester is_deleted = TRUE)
+INSERT INTO Seance (dateHeureDebut, dateHeureFin, placesRestantes, idFilm, idSalle, is_deleted, date_suppression) VALUES
+    ('2025-02-01 14:00:00', '2025-02-01 16:00:00', 40, 2, 1, TRUE, '2025-01-15 10:00:00');
 
 -- ----------------------------------------------------------------
--- 7. Réservations (montantTotal = nombrePlaces * prixUnitaire)
+-- 8. Réservations
 -- ----------------------------------------------------------------
-INSERT INTO Reservation (dateReservation, nombrePlaces, montantTotal, idSeance, idClient, idTarif) VALUES
+-- ⚠️ idPlace est obligatoire. On attribue une place distincte par réservation.
+-- On utilise des sous-requêtes pour récupérer des idPlace cohérents avec la salle.
+-- Pour simplifier, on réserve 1 place par réservation dans cette démo.
+-- ----------------------------------------------------------------
+INSERT INTO Reservation (dateReservation, nombrePlaces, is_deleted, idSeance, idClient, idTarif, idPlace) VALUES
 -- Séance 1 (Inception, passée, complète)
-('2025-01-05 10:30:00', 2, 25.00, 1,  1, 1),  -- Marie, plein tarif
-('2025-01-06 14:15:00', 4, 30.00, 1,  2, 3),  -- Pierre, étudiant (4×7.50)
+('2025-01-05 10:30:00', 1, FALSE, 1,  1, 1, (SELECT idPlace FROM Place WHERE idSalle=1 AND codePlace='A1')),
+('2025-01-06 14:15:00', 1, FALSE, 1,  2, 3, (SELECT idPlace FROM Place WHERE idSalle=1 AND codePlace='A2')),
 -- Séance 2 (Amélie, passée)
-('2025-01-08 09:00:00', 1,  9.50, 2,  3, 2),  -- Sophie, tarif réduit
-('2025-01-09 19:45:00', 3, 24.00, 2,  4, 5),  -- Lucas, senior (3×8.00)
+('2025-01-08 09:00:00', 1, FALSE, 2,  3, 2, (SELECT idPlace FROM Place WHERE idSalle=2 AND codePlace='A1')),
+('2025-01-09 19:45:00', 1, FALSE, 2,  4, 5, (SELECT idPlace FROM Place WHERE idSalle=2 AND codePlace='A2')),
 -- Séance 5 (Parasite, future)
-('2025-11-20 15:00:00', 2, 25.00, 5,  5, 1),  -- Emma, plein tarif
-('2025-11-21 11:30:00', 1,  9.50, 5,  6, 2),  -- Thomas, tarif réduit
-('2025-11-22 18:00:00', 5, 42.50, 5,  7, 7),  -- Chloé, groupe (5×8.50)
+('2025-11-20 15:00:00', 1, FALSE, 5,  5, 1, (SELECT idPlace FROM Place WHERE idSalle=1 AND codePlace='B1')),
+('2025-11-21 11:30:00', 1, FALSE, 5,  6, 2, (SELECT idPlace FROM Place WHERE idSalle=1 AND codePlace='B2')),
+('2025-11-22 18:00:00', 1, FALSE, 5,  7, 7, (SELECT idPlace FROM Place WHERE idSalle=1 AND codePlace='B3')),
 -- Séance 6 (Oppenheimer, future)
-('2025-11-25 10:00:00', 2, 25.00, 6,  8, 1),  -- Hugo, plein tarif
-('2025-11-25 10:05:00', 1,  7.50, 6,  9, 3),  -- Léa, étudiant
+('2025-11-25 10:00:00', 1, FALSE, 6,  8, 1, (SELECT idPlace FROM Place WHERE idSalle=3 AND codePlace='A1')),
+('2025-11-25 10:05:00', 1, FALSE, 6,  9, 3, (SELECT idPlace FROM Place WHERE idSalle=3 AND codePlace='A2')),
 -- Séance 7 (Dune 2, future)
-('2025-11-26 20:00:00', 2, 17.00, 7, 10, 6);  -- Nathan, carte abonné
+('2025-11-26 20:00:00', 1, FALSE, 7, 10, 6, (SELECT idPlace FROM Place WHERE idSalle=2 AND codePlace='C1'));
+
+-- Réservation "supprimée" (annulée) pour tester is_deleted = TRUE
+INSERT INTO Reservation (dateReservation, nombrePlaces, is_deleted, date_suppression, idSeance, idClient, idTarif, idPlace) VALUES
+    ('2025-11-26 16:00:00', 1, TRUE, '2025-11-26 17:00:00', 8, 6, 2, (SELECT idPlace FROM Place WHERE idSalle=1 AND codePlace='C1'));
 
 -- ----------------------------------------------------------------
--- 8. Avis (notes variées, certains films sans avis)
+-- 9. Avis
 -- ----------------------------------------------------------------
 INSERT INTO Avis (note, commentaire, dateAvis, idClient, idFilm) VALUES
                                                                      (5, 'Chef-d''œuvre absolu, à voir et revoir !',          '2025-01-11 20:00:00', 1,  1),
@@ -124,36 +163,42 @@ INSERT INTO Avis (note, commentaire, dateAvis, idClient, idFilm) VALUES
                                                                      (3, 'Sympa sans plus.',                                  '2025-11-29 12:00:00', 10, 9);
 
 -- ----------------------------------------------------------------
--- 9. Logs (traçabilité — CC4)
+-- 10. Logs (traçabilité — CC4)
+-- ⚠️ Les actions sont référencées via idAction (table Action)
+--    On utilise une sous-requête pour récupérer l'idAction par nom.
 -- ----------------------------------------------------------------
-INSERT INTO Log (identifiantUtilisateur, action, dateHeure, donneesConcernees) VALUES
-                                                                                   ('admin',           'CREATION_FILM',          '2025-11-01 09:00:00', 'Film id=1 "Inception"'),
-                                                                                   ('admin',           'CREATION_SEANCE',        '2025-11-02 10:30:00', 'Séance id=5 (Parasite)'),
-                                                                                   ('caissier1',       'CREATION_RESERVATION',   '2025-11-20 15:00:00', 'Réservation id=5, client id=5'),
-                                                                                   ('caissier2',       'CREATION_RESERVATION',   '2025-11-25 10:00:00', 'Réservation id=8, client id=8'),
-                                                                                   ('admin',           'MODIFICATION_TARIF',     '2025-11-25 14:00:00', 'Tarif id=1 : 12.00 → 12.50'),
-                                                                                   ('projectionniste', 'LANCEMENT_SEANCE',       '2025-12-15 14:00:00', 'Séance id=5, Salle 1'),
-                                                                                   ('caissier1',       'ANNULATION_RESERVATION', '2025-11-26 16:00:00', 'Réservation id=10 (annulée)'),
-                                                                                   ('admin',           'CONNEXION',              '2025-11-27 08:00:00', 'IP=192.168.1.10');
+INSERT INTO Log (identifiantUtilisateur, action, dateHeure, donneesConcernees, idAction) VALUES
+                                                                                             ('admin',      'INSERTION_FILM',          '2025-11-01 09:00:00', 'Film id=1 "Inception"',                    (SELECT idAction FROM Action WHERE nomAction='INSERTION')),
+                                                                                             ('admin',      'INSERTION_SEANCE',        '2025-11-02 10:30:00', 'Séance id=5 (Parasite)',                   (SELECT idAction FROM Action WHERE nomAction='INSERTION')),
+                                                                                             ('caissier1',  'INSERTION_RESERVATION',   '2025-11-20 15:00:00', 'Réservation id=5, client id=5',            (SELECT idAction FROM Action WHERE nomAction='INSERTION')),
+                                                                                             ('caissier2',  'INSERTION_RESERVATION',   '2025-11-25 10:00:00', 'Réservation id=8, client id=8',            (SELECT idAction FROM Action WHERE nomAction='INSERTION')),
+                                                                                             ('admin',      'UPDATE_TARIF',            '2025-11-25 14:00:00', 'Tarif id=1 : 12.00 → 12.50',               (SELECT idAction FROM Action WHERE nomAction='UPDATE')),
+                                                                                             ('admin',      'UPDATE_FILM',             '2025-11-26 09:00:00', 'Film id=2 : synopsis modifié',             (SELECT idAction FROM Action WHERE nomAction='UPDATE')),
+                                                                                             ('caissier1',  'DELETE_RESERVATION',      '2025-11-26 16:00:00', 'Réservation id=10 (annulée)',              (SELECT idAction FROM Action WHERE nomAction='DELETE')),
+                                                                                             ('admin',      'DELETE_FILM',             '2025-11-27 11:00:00', 'Film id=11 (retiré de l''affiche)',        (SELECT idAction FROM Action WHERE nomAction='DELETE')),
+                                                                                             ('admin',      'INSERTION_UTILISATEUR',   '2025-11-27 14:00:00', 'Utilisateur id=2 (directeur)',             (SELECT idAction FROM Action WHERE nomAction='INSERTION'));
 
 -- ----------------------------------------------------------------
--- 10. Synchronisation de placesRestantes
+-- 11. Synchronisation de placesRestantes
+-- (On ne compte que les réservations non supprimées)
 -- ----------------------------------------------------------------
 UPDATE Seance s
 SET placesRestantes = sa.capacite - COALESCE((
                                                  SELECT SUM(r.nombrePlaces)
                                                  FROM Reservation r
                                                  WHERE r.idSeance = s.idSeance
+                                                   AND r.is_deleted = FALSE
                                              ), 0)
     FROM Salle sa
 WHERE s.idSalle = sa.idSalle;
 
 -- ----------------------------------------------------------------
--- 11. Recalcul de la note moyenne des films
+-- 12. Mise à jour de la disponibilité des places réservées
 -- ----------------------------------------------------------------
-UPDATE Film f
-SET noteMoyenne = COALESCE((
-                               SELECT ROUND(AVG(a.note)::numeric, 2)
-                               FROM Avis a
-                               WHERE a.idFilm = f.idFilm
-                           ), 0.00);
+UPDATE Place p
+SET disponibilite = FALSE
+WHERE p.idPlace IN (
+    SELECT r.idPlace
+    FROM Reservation r
+    WHERE r.is_deleted = FALSE
+);
