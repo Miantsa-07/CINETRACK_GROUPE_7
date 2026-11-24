@@ -12,6 +12,12 @@
 -- Rappel des idUtilisateur générés :
 --   1 = admin, 2 = directeur, 3 = caissier1, 4 = caissier2
 -- ----------------------------------------------------------------
+-- INSERT INTO Utilisateur (identifiant, motDePasse, role) VALUES
+-- ('admin',            'admin123',   'Administrateur'),
+-- ('caissier1',        'caisse1',    'Caissier'),
+-- ('caissier2',        'caisse2',    'Caissier'),
+-- ('projectionniste',  'proj2025',   'Projectionniste');
+
 INSERT INTO Utilisateur (motDePasse, role, nom, prenom, contact, mail) VALUES
                                                                            ('$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Administrateur', 'Admin',   'Système', '0600000001', 'admin@cinetrack.fr'),
                                                                            ('$2a$10$7J0p/z9cK0KWlgHnDCEqvNeQfpvzFWjEpKAmoEpJiEpIuEpKAmoEp', 'Directeur',      'Durand',  'Marc',    '0600000002', 'directeur@cinetrack.fr'),
